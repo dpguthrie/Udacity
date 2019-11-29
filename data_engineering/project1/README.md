@@ -22,11 +22,11 @@ A sample of the data, as represented by both tables, is shown below:
 
 **Songs**
 
-![Songs](./images/songs.png)
+![Songs](./images/songs.PNG)
 
 **Artists**
 
-![Artists](./images/artists.png)
+![Artists](./images/artists.PNG)
 
 ### Log
 
@@ -40,7 +40,7 @@ The log file shows how their service is being utilized.  Through this file you c
 
 A sample of the data is shown below:
 
-![Songplays](./images/songplays.png)
+![Songplays](./images/songplays.PNG)
 
 ### Process
 
