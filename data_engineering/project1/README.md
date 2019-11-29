@@ -54,19 +54,25 @@ The song files and log files go through a similar process prior to being inserte
 
 #### Log
 
-First, we need to filter the data so that only played songs are included::
+First, we need to filter the data so that only played songs are included:
 
-    df = df[df.page == 'NextSong']
+```python
+df = df[df.page == 'NextSong']
+```
 
-Second, we need to convert the timestamp column to datetime::
+Second, we need to convert the timestamp column to datetime:
 
-    df['ts'] = pd.to_datetime(df['ts'], unit='ms')
+```python
+df['ts'] = pd.to_datetime(df['ts'], unit='ms')
+```
 
 #### Songs
 
 The only thing we need to do for the song file is to convert any NaN values to None::
 
-    df = df.where(pd.notnull(df), None)
+```python
+df = df.where(pd.notnull(df), None)
+```
 
 ## Run Scripts
 
