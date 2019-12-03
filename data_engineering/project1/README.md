@@ -1,9 +1,9 @@
-# Data Engineering - Project 1
+# Project 1 - Data Modeling with Postgres
 
 ## Table of Conents
 1. [Introduction](#introduction)
 2. [ETL](#etl)
-3. [Run Scripts](*#run-scripts)
+3. [Run Scripts](#run-scripts)
 4. [File Explanations](#additional-files)
 
 ## Introduction
