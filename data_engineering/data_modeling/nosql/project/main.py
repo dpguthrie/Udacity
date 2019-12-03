@@ -15,10 +15,10 @@ else:
     file_directory += '/event_data'
 
 
-def get_files(file_directory):
+def get_files(file_directory, format="csv"):
     """Retrieve list of files
     """
-    return glob.glob(file_directory + "/*.csv")
+    return glob.glob(file_directory + f"/*.{format}")
 
 
 def construct_dataframe_from_files(files):
@@ -27,7 +27,6 @@ def construct_dataframe_from_files(files):
     Returns:
         pandas.DataFrame
     """
-    files = get_files(file_directory)
     df = pd.concat((pd.read_csv(f) for f in files))
     df.dropna(subset=['artist'], inplace=True)
     df[['itemInSession', 'sessionId', 'userId']] = \
