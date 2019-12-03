@@ -27,6 +27,7 @@ def construct_dataframe_from_files(files):
     Returns:
         pandas.DataFrame
     """
+    files = get_files(file_directory)
     df = pd.concat((pd.read_csv(f) for f in files))
     df.dropna(subset=['artist'], inplace=True)
     df[['itemInSession', 'sessionId', 'userId']] = \
