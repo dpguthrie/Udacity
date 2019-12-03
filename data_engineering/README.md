@@ -6,7 +6,7 @@ Learn to design data models, build data warehouses and data lakes, automate data
 
 ## Course Outline
 
-1. Data Modeling
+1. [Data Modeling](/data_modeling)
 2. Cloud Data Warehouses
 3. Data Lakes with Spark
 4. Data Pipelines with Airflow
