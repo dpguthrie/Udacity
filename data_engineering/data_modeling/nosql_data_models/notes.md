@@ -1,0 +1,38 @@
+# NoSQL Databases
+
+- Terminology
+  - NoSQL and non-relational can be used interchangeably
+- When to Use
+  - Need high availability
+  - Have large amounts of data
+  - Need linear scalability
+  - Low latency
+  - Need fast reads and writes
+- What to Use -- Apache Cassandra
+  - Open-source NoSQL Database
+  - Master-less architecture, high-availability, and linearly scalable
+  - Major contributors:
+    - DataStax
+    - Facebook
+    - Twitter
+    - Apple
+  - Data Modeling
+    - Denormalization is absolutely critical
+    - Think about queries first (NO JOINS ALLOWED)
+    - One table per query is a great strategy
+- CAP Theorem
+    - Impossible for distributed data store to simultaneously provide more than two out of the following three guarantees
+      - Consistency:  every read from the database gets the latest (and correct) piec eof data or an error
+      - Availability:  every request is received and a response is given (without guarantee to data accuracy)
+      - Partition Tolerance:  system continues to work regardless of losing network connectivity between nodes
+- CQL
+  - Cassandra Query Language
+  - Very similar to SQL (EXCEPT JOINS, GROUP BY, and SUBQUERIES)
+- Keys (Primary, Partition, Clustering)
+  - Made up of either a PARTITION KEY or can also include additional CLUSTERING COLUMNS
+  - A simple primary key is just one column that is also the PARTITION KEY.  A composite primary key is made up of more than one column and will assist in creating a unique value
+  - The PARTITION KEY will determine the distribution of data across the system
+  - Clustering column will determine the sort order (defaults to ascending)
+- WHERE clause
+  - PARTITION KEY must be included in your query and any clustering columns can be used in the order they appear in your PRIMARY KEY
+  - Failure to include a WHERE caluse will result in an error (AVOID using "ALLOW FILTERING")
