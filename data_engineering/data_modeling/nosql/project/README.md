@@ -3,8 +3,9 @@
 ## Table of Conents
 1. [Introduction](#introduction)
 2. [Requirements](#requirements)
-3. [Solution](#solution)
-
+3. [Execution](#execution)
+4. [Presentation](#presentation)
+5. [Improvements](#improvements)
 
 ## Introduction
 
@@ -40,6 +41,52 @@ They'd like a data engineer to create an Apache Cassandra database which can cre
 - Add description of your PRIMARY KEY and how you arrived at the decision to use each for the query
 - Use Panda dataframes to add columns to your query output
 
-## Solution
+## Execution
 
-TODO
+The entire ETL process can be run through the command line.  It is built to be somewhat flexible:
+
+1. The user can define where the files are located (from the current working directory):
+
+```bash
+python main.py -p <specify_path_here>
+```
+
+or
+
+```bash
+python main.py --path <specify_path_here>
+```
+
+2. The user can define what types of files to look for:
+
+```bash
+python main.py -f {specify_file_format}
+```
+
+or
+
+```bash
+python main.py --file_format {specify_file_format}
+```
+
+Alternatively, and for this project specifically, the command can be written without arguments because they're given with defaults:
+
+```bash
+python main.py
+```
+
+## Presentation
+
+The [Presentation](/Presentation.ipynb) Jupyter Notebook will demonstrate some of the choices I made relative to the initial template notebook provided.
+
+## Improvements
+
+In order for this process to be more plug-n-play, some of the improvements below could be developed:
+
+1. Possibly create a `DataFrame` class or something similar to:
+  - Customize data cleaning process
+  - Check for data that's not formatted similarly
+  - Check for appropriate dtypes
+2. Allow for more complex Primary Keys in the `ETL` class
+  - Currently, the class does not allow for more than one Partition Key
+3. Error / Data Quality Checks in `ETL` class
