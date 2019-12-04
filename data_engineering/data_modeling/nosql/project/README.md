@@ -60,13 +60,13 @@ python main.py --path <specify_path_here>
 2. The user can define what types of files to look for:
 
 ```bash
-python main.py -f {specify_file_format}
+python main.py -f <specify_file_format>
 ```
 
 or
 
 ```bash
-python main.py --file_format {specify_file_format}
+python main.py --file_format <specify_file_format>
 ```
 
 Alternatively, and for this project specifically, the command can be written without arguments because they're given with defaults:
