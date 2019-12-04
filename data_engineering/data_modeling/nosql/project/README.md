@@ -84,9 +84,9 @@ The [Presentation](/data_engineering/data_modeling/nosql/project/Presentation.ip
 In order for this process to be more plug-n-play, some of the improvements below could be developed:
 
 1. Possibly create a `DataFrame` class or something similar to:
-  - Customize data cleaning process
-  - Check for data that's not formatted similarly
-  - Check for appropriate dtypes
+    - Customize data cleaning process
+    - Check for data that's not formatted similarly
+    - Check for appropriate dtypes
 2. Allow for more complex Primary Keys in the `ETL` class
-  - Currently, the class does not allow for more than one Partition Key
+    - Currently, the class does not allow for more than one Partition Key
 3. Error / Data Quality Checks in `ETL` class
