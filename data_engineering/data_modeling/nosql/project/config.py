@@ -14,7 +14,8 @@ sparkify_dictionary = {
     },
     'song': {
         'table': 'song_detail',
-        'columns': ['sessionId', 'itemInSession', 'song', 'firstName', 'lastName'],
+        'columns': [
+            'sessionId', 'itemInSession', 'song', 'firstName', 'lastName'],
         'column_types': ['int', 'int', 'text', 'text', 'text'],
         'primary_key': ['song', 'sessionId', 'itemInSession']
     }
