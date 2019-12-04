@@ -20,7 +20,7 @@ def get_file_directory(filepath):
     return cwd
 
 
-def get_files(file_directory, format="csv"):
+def get_files(file_directory, format):
     """Retrieve list of files
     """
     return glob.glob(file_directory + f"/*.{format}")
@@ -40,7 +40,7 @@ def construct_dataframe_from_files(files):
     return df
 
 
-def run(filepath):
+def run(path, file_format):
     """Entrypoint into ETL script
 
     Steps:
@@ -53,8 +53,8 @@ def run(filepath):
     Arguments:
         filepath {str} -- Folder where files reside
     """
-    file_directory = get_file_directory(filepath)
-    files = get_files(file_directory)
+    file_directory = get_file_directory(path)
+    files = get_files(file_directory, file_format)
     dataframe = construct_dataframe_from_files(files)
     etl = ETL(sparkify_dictionary, dataframe)
     for key in etl.dictionary.keys():
@@ -64,7 +64,13 @@ def run(filepath):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--filepath", help="Filepath where files reside")
+    parser.add_argument(
+        "-p", "--path",
+        help="Filepath where files reside.  Default is '/event_data'",
+        default='/event_data')
+    parser.add_argument(
+        "-f", "--file_format",
+        help="Retrieve only files with specific format.  Default is 'csv'",
+        default='csv')
     args = parser.parse_args()
-    filepath = args.filepath if args.filepath else '/event_data'
-    run(filepath)
+    run(args.path, args.file_format)
