@@ -77,7 +77,7 @@ python main.py
 
 ## Presentation
 
-The [Presentation](/Presentation.ipynb) Jupyter Notebook will demonstrate some of the choices I made relative to the initial template notebook provided.
+The [Presentation](/data_engineering/data_modeling/nosql/project/Presentation.ipynb) Jupyter Notebook will demonstrate some of the choices I made relative to the initial template notebook provided.
 
 ## Improvements
 
