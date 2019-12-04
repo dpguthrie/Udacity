@@ -102,7 +102,7 @@ class ETL(Cassandra):
         """
         return self.dictionary[key]['primary_key']
 
-    def create_statement(self, key):
+    def _create_statement(self, key):
         return f'''
             CREATE TABLE IF NOT EXISTS {self._table(key)}
             ({self._columns_with_types(key)},
@@ -110,21 +110,21 @@ class ETL(Cassandra):
                 {convert_list_to_string(self._primary_key(key), ", ")}))
         '''
 
-    def insert_statement(self, key):
+    def _insert_statement(self, key):
         return f'''
             INSERT INTO {self._table(key)}
             ({convert_list_to_string(self._columns(key), ", ")})
             VALUES ({self._column_placeholders(key)})
         '''
 
-    def execute(self, query, params=()):
+    def _execute(self, query, params=()):
         try:
             self.session.execute(query, params)
         except Exception as e:
             print(e)
 
     def run(self, key):
-        self.execute(self.create_statement(key))
+        self._execute(self._create_statement(key))
         for i, row in self.dataframe.iterrows():
             params = [row[column] for column in self._columns(key)]
-            self.execute(self.insert_statement(key), params)
+            self._execute(self._insert_statement(key), params)
