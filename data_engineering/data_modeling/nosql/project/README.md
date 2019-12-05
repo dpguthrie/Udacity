@@ -1,6 +1,6 @@
 # Project 2 - Data Modeling with Apache Cassandra
 
-## Table of Conents
+## Table of Contents
 1. [Introduction](#introduction)
 2. [Requirements](#requirements)
 3. [Execution](#execution)
