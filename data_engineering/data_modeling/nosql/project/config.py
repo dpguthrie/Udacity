@@ -4,46 +4,37 @@ sparkify_dictionary = {
         'columns': ['sessionId', 'itemInSession', 'artist', 'song', 'length'],
         'column_types': ['int', 'int', 'text', 'text', 'float'],
         'primary_key': ['sessionId', 'itemInSession'],
-        'primary_key_description': '''
-            The item_detail table uses a compound primary key with two components:
-            sessionId and itemInSession.  The sessionId will be how the data
-            is partitioned in the cluster and itemInSession will (1)
-            enforce uniqueness on the row and (2) order the data in ascending
-            order.  The query used for this table is concerned with a specific
-            item in a session so it made sense to me to partition the data by
-            session.
-        '''
+        'select': {
+            'columns': ['artist', 'song', 'length'],
+            'where': ["sessionId = 338", "itemInSession = 4"],
+            'description': 'This query aims to get the detail of a song for \
+                one specific item in a session'
+        }
     },
     'session': {
         'table': 'session_detail',
         'columns': ['sessionId', 'itemInSession', 'artist', 'song', 'userId',
                     'firstName', 'lastName'],
         'column_types': ['int', 'int', 'text', 'text', 'int', 'text', 'text'],
-        'primary_key': ['userId', 'sessionId', 'itemInSession'],
-        'primary_key_description': '''
-            The session_detail table uses a compound primary key with three
-            components:  userId, sessionId, and itemInSession.  The userId will
-            be how the data is partitioned in the cluster and sessionId and
-            itemInSession will (1) enforce uniqueness on the row and (2) order
-            the data in ascending order.  The query used for this table is
-            concerned with a specific user and session so it made sense to me
-            to partition the data by user.
-        '''
+        'primary_key': [('userId', 'sessionId'), 'itemInSession'],
+        'select': {
+            'columns': ['artist', 'song', 'firstname', 'lastname'],
+            'where': ["userId = 10", "sessionId = 182"],
+            'description': 'This query aims to find all songs a user listened \
+                to in a particular session'
+        }
     },
     'song': {
         'table': 'song_detail',
         'columns': [
-            'sessionId', 'itemInSession', 'song', 'firstName', 'lastName'],
-        'column_types': ['int', 'int', 'text', 'text', 'text'],
-        'primary_key': ['song', 'sessionId', 'itemInSession'],
-        'primary_key_description': '''
-            The song_detail table uses a compound primary key with three
-            components:  song, sessionId, and itemInSession.  The song will
-            be how the data is partitioned in the cluster and sessionId and
-            itemInSession will (1) enforce uniqueness on the row and (2) order
-            the data in ascending order.  The query used for this table is
-            concerned with a specific song so it made sense to me
-            to partition the data by song.
-        '''
+            'song', 'userId', 'firstName', 'lastName'],
+        'column_types': ['text', 'int', 'text', 'text'],
+        'primary_key': ['song', 'userId'],
+        'select': {
+            'columns': ['firstname', 'lastname'],
+            'where': ["song = 'All Hands Against His Own'"],
+            'description': 'This query aims to find all users who have \
+                listened to a specific song'
+        }
     }
 }
