@@ -100,20 +100,23 @@ class ETL(Cassandra):
         Returns:
             str -- Primary Key
         """
-        return self.dictionary[key]['primary_key']
+        primary_key = self.dictionary[key]['primary_key']
+        primary_key_string = convert_list_to_string(primary_key, ", ")
+        if "'" in primary_key_string:
+            primary_key_string = primary_key_string.replace("'", "")
+        return primary_key_string
 
     def _create_statement(self, key):
         return f'''
             CREATE TABLE IF NOT EXISTS {self._table(key)}
             ({self._columns_with_types(key)},
-            PRIMARY KEY (
-                {convert_list_to_string(self._primary_key(key), ", ")}))
+            PRIMARY KEY ({self._primary_key(key)}))
         '''
 
     def _insert_statement(self, key):
+        columns = convert_list_to_string(self._columns(key), ", ")
         return f'''
-            INSERT INTO {self._table(key)}
-            ({convert_list_to_string(self._columns(key), ", ")})
+            INSERT INTO {self._table(key)} ({columns})
             VALUES ({self._column_placeholders(key)})
         '''
 
